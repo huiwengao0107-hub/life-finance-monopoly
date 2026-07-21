@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>人生理財大富翁 V5.0｜隊伍設定版</title>
+<title>人生理財大富翁 V3.0｜主持人判定版</title>
 <style>
 :root{--ink:#172033;--paper:#fffaf1;--blue:#1d63d5;--shadow:0 12px 32px rgba(20,32,60,.18)}
 *{box-sizing:border-box}
@@ -40,19 +40,14 @@ input{width:100%;border:1px solid #ccd5e1;border-radius:10px;padding:9px;font-si
 .badge{display:inline-block;padding:4px 9px;border-radius:999px;background:#eaf1ff;color:#1457b7;font-size:12px;font-weight:900}
 .rank{font-size:20px;line-height:1.9}
 .ranking-list{display:grid;gap:7px;font-weight:900}.ranking-item{display:flex;justify-content:space-between;background:#f4f7fb;border-radius:10px;padding:9px}.host-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.host-grid select,.host-grid input{font-size:16px;padding:10px;border:1px solid #ccd5e1;border-radius:10px;width:100%}.timer{font-size:46px;font-weight:900;text-align:center;color:#c93d4b;margin-top:10px}.timer-controls{display:flex;gap:8px;justify-content:center;margin-top:8px}.screen{position:fixed;inset:0;z-index:100;background:linear-gradient(135deg,#0d4aa7,#743dc2);display:grid;place-items:center;padding:24px}.screen.hidden{display:none}.home-box{width:min(950px,94vw);padding:54px;text-align:center;border-radius:32px;background:#fff;box-shadow:0 28px 90px #0006}.home-box h1{font-size:clamp(40px,6vw,76px);color:#164b9b}.home-box p{font-size:25px}.home-box button{font-size:28px;padding:20px 48px}.projection{background:#111}.projection .layout{max-width:none;padding:8px;grid-template-columns:minmax(0,1fr) 440px}.projection .log-card{display:none}.projection button{font-size:20px;padding:15px}.projection .modal-box{width:min(1100px,98vw)}.projection .modal-text{font-size:34px}.status-note{padding:10px;border-radius:10px;background:#fff2bf;font-weight:900;text-align:center;margin-top:9px}.money-pop{animation:moneyPop .75s ease}.token.moving{animation:tokenBounce .32s ease}.modal.show .modal-box{animation:cardFlip .45s ease}.goal-celebrate{animation:goalPulse .75s ease infinite alternate}@keyframes moneyPop{50%{transform:scale(1.16);background:#fff0a8}}@keyframes tokenBounce{50%{transform:translate(-50%,-65%) scale(1.22)}}@keyframes cardFlip{from{opacity:0;transform:perspective(900px) rotateY(75deg) scale(.85)}to{opacity:1;transform:none}}@keyframes goalPulse{to{transform:scale(1.04);filter:drop-shadow(0 0 18px #ffd400)}}
-.setup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.team-setup{border:2px solid #dce4ef;border-radius:18px;padding:16px;text-align:left;background:#f8fafc}.team-setup h3{margin:0 0 12px}.team-setup label{display:block;font-size:13px;font-weight:900;margin:10px 0 5px}.team-setup select,.team-setup input{font-size:16px;padding:11px}.setup-preview{font-size:30px;text-align:center;padding:10px}.home-note{font-size:14px!important;color:#667085}.team-dot{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;color:#fff;margin-right:8px;font-size:18px;vertical-align:middle}.setup-error{min-height:24px;color:#c93d4b;font-weight:900;margin-top:8px}@media(max-width:760px){.setup-grid{grid-template-columns:1fr}.home-box{padding:24px}.home-box h1{font-size:38px}.home-box p{font-size:18px}}
 @media(max-width:980px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.side .card:last-child{grid-column:1/-1}}
 @media(max-width:650px){header{align-items:flex-start;flex-direction:column}.layout{padding:8px}.side{display:flex}.token{width:3.2%}h1{font-size:19px}}
 </style>
 </head>
 <body>
-<div class="screen" id="homeScreen"><div class="home-box"><div style="font-size:70px">🎲🐷🏦</div><h1>人生理財大富翁</h1><p>開始前，請先設定三組的隊伍名稱、圖示與顏色。</p><div class="setup-grid">
-<div class="team-setup"><h3>隊伍 1</h3><div class="setup-preview" id="preview0">🚀</div><label>隊伍名稱</label><input id="teamName0" maxlength="12" value="財富自由隊"><label>代表圖示</label><select id="teamIcon0" onchange="updateTeamPreview(0)"><option>🚀</option><option>💰</option><option>🦊</option><option>🐼</option><option>🦁</option><option>🐯</option><option>🦅</option><option>🐧</option></select><label>隊伍顏色</label><select id="teamColor0" onchange="updateTeamPreview(0)"><option value="#e84142">紅色</option><option value="#1565d8">藍色</option><option value="#159a55">綠色</option><option value="#f08b22">橘色</option><option value="#7b3fc8">紫色</option></select></div>
-<div class="team-setup"><h3>隊伍 2</h3><div class="setup-preview" id="preview1">💰</div><label>隊伍名稱</label><input id="teamName1" maxlength="12" value="理財高手隊"><label>代表圖示</label><select id="teamIcon1" onchange="updateTeamPreview(1)"><option>💰</option><option>🚀</option><option>🦊</option><option>🐼</option><option>🦁</option><option>🐯</option><option>🦅</option><option>🐧</option></select><label>隊伍顏色</label><select id="teamColor1" onchange="updateTeamPreview(1)"><option value="#1565d8">藍色</option><option value="#e84142">紅色</option><option value="#159a55">綠色</option><option value="#f08b22">橘色</option><option value="#7b3fc8">紫色</option></select></div>
-<div class="team-setup"><h3>隊伍 3</h3><div class="setup-preview" id="preview2">🦊</div><label>隊伍名稱</label><input id="teamName2" maxlength="12" value="投資小達人"><label>代表圖示</label><select id="teamIcon2" onchange="updateTeamPreview(2)"><option>🦊</option><option>🚀</option><option>💰</option><option>🐼</option><option>🦁</option><option>🐯</option><option>🦅</option><option>🐧</option></select><label>隊伍顏色</label><select id="teamColor2" onchange="updateTeamPreview(2)"><option value="#7b3fc8">紫色</option><option value="#e84142">紅色</option><option value="#1565d8">藍色</option><option value="#159a55">綠色</option><option value="#f08b22">橘色</option></select></div>
-</div><div class="setup-error" id="setupError"></div><button class="primary" onclick="applyTeamSetupAndStart()">確認隊伍並開始遊戲</button><p class="home-note">依照既有規則：每組起始現金 $5,000，完成新手任務後再獲得 $2,000。</p></div></div>
+<div class="screen" id="homeScreen"><div class="home-box"><div style="font-size:76px">🎲🐷🏦</div><h1>人生理財大富翁</h1><p>三組一起挑戰理財任務，學會規劃、合作與聰明選擇！</p><button class="primary" onclick="startGame()">開始遊戲</button></div></div>
 <header>
-  <div><h1>🎲 人生理財大富翁 V5.0｜隊伍設定版</h1><div class="sub">卡牌效果固定化、主持人判定、投骰子與資產結算</div></div>
+  <div><h1>🎲 人生理財大富翁 V3.3｜正式路徑校正版</h1><div class="sub">卡牌效果固定化、主持人判定、投骰子與資產結算</div></div>
   <div><button id="soundBtn" class="secondary" onclick="toggleSound()">🔊 音效開</button> <button class="secondary" onclick="toggleProjection()">📽️ 投影模式</button> <button class="secondary" onclick="toggleFullscreen()">⛶ 全螢幕</button></div>
 </header>
 
@@ -73,12 +68,12 @@ input{width:100%;border:1px solid #ccd5e1;border-radius:10px;padding:9px;font-si
       <div class="status-note" id="phaseNote">請先完成三組新手任務</div>
     </section>
 
+    <section class="card"><h3 style="margin:0 0 8px">🎤 主持人模式</h3><div class="host-grid"><select id="hostPlayer"><option value="0">第一組</option><option value="1">第二組</option><option value="2">第三組</option></select><input id="playerName" placeholder="修改玩家名稱"><input id="cashValue" type="number" step="100" placeholder="現金"><input id="savingValue" type="number" step="100" placeholder="存款"><input id="debtValue" type="number" step="100" placeholder="負債"><button class="secondary" onclick="updatePlayerData()">套用名稱與資產</button><select id="positionSelect"></select><button class="secondary" onclick="changePosition()">修改位置</button><button class="secondary" onclick="skipCurrent()">跳過回合</button><button class="secondary" onclick="moveSpecial(0)">回到 START</button><button class="secondary" onclick="moveSpecial(GOAL_POS)">直接 GOAL</button><select id="deckSelect"><option value="event">突發事件卡</option><option value="chance">機會卡</option><option value="scenario">情境卡</option><option value="cooperation">合作挑戰卡</option><option value="knowledge">理財知識卡</option><option value="feedback">學習回饋卡</option><option value="newbie">新手任務卡</option></select><button class="secondary" onclick="hostDrawCard()">指定抽卡</button><button class="primary" onclick="saveGame()">💾 存檔</button><button class="primary" onclick="loadGame()">📂 讀檔</button><button class="danger" style="grid-column:1/-1" onclick="resetGame()">重新開始</button></div></section>
+    <section class="card"><h3 style="margin:0 0 8px">🏆 即時排行榜</h3><div id="ranking" class="ranking-list"></div></section>
     <section class="card">
       <h3 style="margin:0 0 8px">三組資產</h3>
       <div id="players"></div>
     </section>
-    <section class="card"><h3 style="margin:0 0 8px">🏆 即時排行榜</h3><div id="ranking" class="ranking-list"></div></section>
-    <section class="card"><h3 style="margin:0 0 8px">🎤 主持人模式</h3><div class="host-grid"><select id="hostPlayer"><option value="0">第一組</option><option value="1">第二組</option><option value="2">第三組</option></select><input id="playerName" placeholder="修改玩家名稱"><input id="cashValue" type="number" step="100" placeholder="現金"><input id="savingValue" type="number" step="100" placeholder="存款"><input id="debtValue" type="number" step="100" placeholder="負債"><button class="secondary" onclick="updatePlayerData()">套用名稱與資產</button><select id="positionSelect"></select><button class="secondary" onclick="changePosition()">修改位置</button><button class="secondary" onclick="skipCurrent()">跳過回合</button><button class="secondary" onclick="moveSpecial(0)">回到 START</button><button class="secondary" onclick="moveSpecial(GOAL_POS)">直接 GOAL</button><select id="deckSelect"><option value="event">突發事件卡</option><option value="chance">機會卡</option><option value="scenario">情境卡</option><option value="cooperation">合作挑戰卡</option><option value="knowledge">理財知識卡</option><option value="feedback">學習回饋卡</option><option value="newbie">新手任務卡</option></select><button class="secondary" onclick="hostDrawCard()">指定抽卡</button><button class="primary" onclick="saveGame()">💾 存檔</button><button class="primary" onclick="loadGame()">📂 讀檔</button><button class="danger" style="grid-column:1/-1" onclick="resetGame()">重新開始</button></div></section>
     <section class="card log-card">
       <h3 style="margin:0 0 8px">遊戲紀錄</h3>
       <div class="log" id="log"></div>
@@ -183,9 +178,9 @@ const decks = {
 };
 
 const players = [
- {name:"財富自由隊",icon:"🚀",colorHex:"#e84142",cash:5000,saving:0,debt:0,pos:0,skip:0,shield:0,newbieDone:false},
- {name:"理財高手隊",icon:"💰",colorHex:"#1565d8",cash:5000,saving:0,debt:0,pos:0,skip:0,shield:0,newbieDone:false},
- {name:"投資小達人",icon:"🦊",colorHex:"#7b3fc8",cash:5000,saving:0,debt:0,pos:0,skip:0,shield:0,newbieDone:false}
+ {name:"第一組",cash:5000,saving:0,debt:0,pos:0,skip:0,shield:0,color:"紅",newbieDone:false},
+ {name:"第二組",cash:5000,saving:0,debt:0,pos:0,skip:0,shield:0,color:"藍",newbieDone:false},
+ {name:"第三組",cash:5000,saving:0,debt:0,pos:0,skip:0,shield:0,color:"紫",newbieDone:false}
 ];
 let current=0,rolling=false,gameStarted=false,newbieIndex=0,timerId=null,timerSeconds=0,soundOn=true,audioCtx=null;
 function sound(kind){if(!soundOn)return;audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();const tones={dice:[280,.08],card:[520,.12],add:[760,.18],minus:[180,.22],goal:[880,.35],winner:[1040,.55]},v=tones[kind]||[440,.1],o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=kind==="minus"?"sawtooth":"sine";o.frequency.value=v[0];g.gain.setValueAtTime(.13,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+v[1]);o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+v[1])}
@@ -252,31 +247,21 @@ function draw(deck){
 function money(n){return "$"+Math.round(n).toLocaleString("zh-TW")}
 function total(p){return p.cash+p.saving-(p.debt||0)}
 function render(){
- document.getElementById("turnName").textContent=`${players[current].icon||""} ${players[current].name}`.trim();
- const hp=document.getElementById("hostPlayer");if(hp){const selected=hp.value;hp.innerHTML=players.map((p,i)=>`<option value="${i}">${p.icon||""} ${p.name}</option>`).join("");hp.value=selected||"0";}
+ document.getElementById("turnName").textContent=players[current].name;
  document.getElementById("players").innerHTML=players.map((p,i)=>`
   <div class="player ${i===current?'active':''}">
-   <div class="player-row"><span><span class="team-dot" style="background:${p.colorHex||['#e84142','#1565d8','#7b3fc8'][i]}">${p.icon||i+1}</span>${p.name}</span><span class="money">${money(total(p))}</span></div>
+   <div class="player-row"><span>${i+1}. ${p.name}</span><span class="money">${money(total(p))}</span></div>
    <div class="small">現金 ${money(p.cash)}<br>存款 ${money(p.saving)} ｜ 負債 ${money(p.debt||0)}<br>總資產 ${money(total(p))}<br>位置 ${positionLabel(p.pos)}${p.newbieDone?' ｜ ✅任務完成':''}${p.shield?' ｜ 🛡️抵銷卡':''}</div>
   </div>`).join("");
  players.forEach((p,i)=>{
    const [x,y]=path[p.pos];
    const offsets=[[-1.1,-1.1],[1.1,-1.1],[0,1.2]][i];
    const el=document.getElementById("t"+i);
-   el.style.left=(x+offsets[0])+"%";el.style.top=(y+offsets[1])+"%";el.style.background=p.colorHex||"";el.dataset.label=p.icon||String(i+1);
+   el.style.left=(x+offsets[0])+"%";el.style.top=(y+offsets[1])+"%";
  });
  const rank=[...players].sort((a,b)=>total(b)-total(a));document.getElementById("ranking").innerHTML=rank.map((p,i)=>`<div class="ranking-item"><span>${["🥇 第一名","🥈 第二名","🥉 第三名"][i]}　${p.name}</span><span>${money(total(p))}</span></div>`).join("");document.getElementById("rollBtn").disabled=!gameStarted||rolling||players[current].pos===GOAL_POS;
 }
-function updateTeamPreview(i){const icon=document.getElementById(`teamIcon${i}`).value,color=document.getElementById(`teamColor${i}`).value,preview=document.getElementById(`preview${i}`);preview.textContent=icon;preview.style.color=color}
-function applyTeamSetupAndStart(){
- const names=[0,1,2].map(i=>document.getElementById(`teamName${i}`).value.trim());
- const error=document.getElementById("setupError");
- if(names.some(n=>!n)){error.textContent="三組都必須輸入隊伍名稱。";return}
- if(new Set(names).size<3){error.textContent="三組隊伍名稱不能重複。";return}
- [0,1,2].forEach(i=>{players[i].name=names[i];players[i].icon=document.getElementById(`teamIcon${i}`).value;players[i].colorHex=document.getElementById(`teamColor${i}`).value});
- error.textContent="";startGame();
-}
-function startGame(){document.getElementById("homeScreen").classList.add("hidden");current=0;newbieIndex=0;render();syncHostFields();log(`隊伍設定完成：${players.map(p=>p.name).join("、")}`);log("依序完成三組新手任務");setTimeout(openNewbieTask,200)}
+function startGame(){document.getElementById("homeScreen").classList.add("hidden");current=0;newbieIndex=0;render();log("依序完成三組新手任務");setTimeout(openNewbieTask,200)}
 function openNewbieTask(){
  current=newbieIndex;render();
  const card=draw("newbie");
@@ -286,7 +271,7 @@ function openNewbieTask(){
   {text:"完成任務 ＋$2,000",cls:"primary",fn:completeNewbie}
  ]);
 }
-function completeNewbie(){const p=players[current];if(p.newbieDone)return;p.newbieDone=true;p.cash+=2000;log(`${p.name} 完成新手任務，獲得 $2,000`);closeModal();render();newbieIndex++;if(newbieIndex<3)setTimeout(openNewbieTask,200);else{gameStarted=true;current=0;document.getElementById("phaseNote").textContent="✅ 新手任務完成，正式遊戲開始！";render();showModal("🎉 大富翁正式開始",`三組都已完成任務，每組現金 $7,000。\n投骰子已解鎖，請 ${players[0].icon} ${players[0].name} 開始！`,[{text:"開始投骰子",cls:"primary",fn:closeModal}])}}
+function completeNewbie(){const p=players[current];if(p.newbieDone)return;p.newbieDone=true;p.cash+=2000;log(`${p.name} 完成新手任務，獲得 $2,000`);closeModal();render();newbieIndex++;if(newbieIndex<3)setTimeout(openNewbieTask,200);else{gameStarted=true;current=0;document.getElementById("phaseNote").textContent="✅ 新手任務完成，正式遊戲開始！";render();showModal("🎉 大富翁正式開始","三組都已完成任務，每組現金 $7,000。\n投骰子已解鎖，請第一組開始！",[{text:"開始投骰子",cls:"primary",fn:closeModal}])}}
 function log(msg){
  const el=document.getElementById("log");
  const d=document.createElement("div");d.textContent=msg;el.prepend(d);
@@ -527,15 +512,15 @@ function showRanking(finished=false){
  showModal(finished?"🏆 遊戲結算":"📊 即時排名",text,[{text:"關閉",cls:"primary",fn:closeModal}]);
 }
 function showAward(){sound("goal");setTimeout(()=>sound("winner"),450);const r=[...players].sort((a,b)=>total(b)-total(a));showModal("🏆 理財大富翁頒獎典禮",r.map((p,i)=>`${["🥇 第一名","🥈 第二名","🥉 第三名"][i]}：${p.name}　${money(total(p))}`).join("\n\n"),[{text:"查看最終資產",cls:"primary",fn:()=>showRanking(true)}]);document.querySelector(".modal-box").classList.add("goal-celebrate")}
-function saveGame(){const data={players,current,gameStarted,newbieIndex,logs:document.getElementById("log").innerHTML};localStorage.setItem("financeMonopolyV50",JSON.stringify(data));showModal("💾 存檔完成","目前進度已儲存在這台電腦的瀏覽器中。",[{text:"確認",cls:"primary",fn:closeModal}])}
-function loadGame(){const raw=localStorage.getItem("financeMonopolyV50");if(!raw){showModal("找不到存檔","尚未建立遊戲存檔。",[{text:"確認",cls:"primary",fn:closeModal}]);return}const d=JSON.parse(raw);d.players.forEach((p,i)=>Object.assign(players[i],p));current=d.current;gameStarted=d.gameStarted;newbieIndex=d.newbieIndex;document.getElementById("log").innerHTML=d.logs||"";document.getElementById("homeScreen").classList.add("hidden");document.getElementById("phaseNote").textContent=gameStarted?"✅ 已讀取正式遊戲進度":"請繼續完成新手任務";render();syncHostFields();showModal("📂 讀檔完成","遊戲進度已恢復。",[{text:"繼續遊戲",cls:"primary",fn:closeModal}])}
+function saveGame(){const data={players,current,gameStarted,newbieIndex,logs:document.getElementById("log").innerHTML};localStorage.setItem("financeMonopolyV33",JSON.stringify(data));showModal("💾 存檔完成","目前進度已儲存在這台電腦的瀏覽器中。",[{text:"確認",cls:"primary",fn:closeModal}])}
+function loadGame(){const raw=localStorage.getItem("financeMonopolyV33");if(!raw){showModal("找不到存檔","尚未建立遊戲存檔。",[{text:"確認",cls:"primary",fn:closeModal}]);return}const d=JSON.parse(raw);d.players.forEach((p,i)=>Object.assign(players[i],p));current=d.current;gameStarted=d.gameStarted;newbieIndex=d.newbieIndex;document.getElementById("log").innerHTML=d.logs||"";document.getElementById("homeScreen").classList.add("hidden");document.getElementById("phaseNote").textContent=gameStarted?"✅ 已讀取正式遊戲進度":"請繼續完成新手任務";render();syncHostFields();showModal("📂 讀檔完成","遊戲進度已恢復。",[{text:"繼續遊戲",cls:"primary",fn:closeModal}])}
 function resetGame(){
  if(!confirm("確定要重新開始嗎？目前紀錄會清除。"))return;
- players.forEach(p=>{p.cash=5000;p.saving=0;p.debt=0;p.pos=0;p.skip=0;p.shield=0;p.newbieDone=false});current=0;newbieIndex=0;gameStarted=false;rolling=false;clearTimer();for(const k in decks)shuffled[k]=shuffle(decks[k]);document.getElementById("log").innerHTML="";document.getElementById("dice").textContent="⚀";document.getElementById("phaseNote").textContent="請先完成三組新手任務";closeModal();document.getElementById("homeScreen").classList.remove("hidden");render();log("遊戲已重新開始");
+ players.forEach(p=>{p.cash=5000;p.saving=0;p.pos=0;p.skip=0;p.shield=0;p.newbieDone=false});current=0;newbieIndex=0;gameStarted=false;rolling=false;clearTimer();for(const k in decks)shuffled[k]=shuffle(decks[k]);document.getElementById("log").innerHTML="";document.getElementById("dice").textContent="⚀";document.getElementById("phaseNote").textContent="請先完成三組新手任務";closeModal();document.getElementById("homeScreen").classList.remove("hidden");render();log("遊戲已重新開始");
 }
 function toggleFullscreen(){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()}
 function toggleProjection(){document.body.classList.toggle("projection")}
-[0,1,2].forEach(updateTeamPreview);document.getElementById("positionSelect").innerHTML=Array.from({length:GOAL_POS+1},(_,i)=>`<option value="${i}">${positionLabel(i)}</option>`).join("");document.getElementById("hostPlayer").addEventListener("change",syncHostFields);render();syncHostFields();log("等待開始：每組起始現金 $5,000");
+document.getElementById("positionSelect").innerHTML=Array.from({length:GOAL_POS+1},(_,i)=>`<option value="${i}">${positionLabel(i)}</option>`).join("");document.getElementById("hostPlayer").addEventListener("change",syncHostFields);render();syncHostFields();log("等待開始：每組起始現金 $5,000");
 </script>
 </body>
 </html>

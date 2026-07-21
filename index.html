@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>人生理財大富翁 V5.0｜多人核心版</title>
+<title>人生理財大富翁 V5.1｜棋盤事件同步版</title>
 <style>
 :root{--ink:#172033;--paper:#fffaf1;--blue:#1d63d5;--shadow:0 12px 32px rgba(20,32,60,.18)}
 *{box-sizing:border-box}
@@ -48,10 +48,10 @@ input{width:100%;border:1px solid #ccd5e1;border-radius:10px;padding:9px;font-si
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="screen" id="homeScreen"><div class="home-box"><div style="font-size:13px;font-weight:800;color:#64748b;margin-bottom:8px">V5.0 多人核心版</div><div style="font-size:76px">🎲🐾🏦</div><h1>人生理財大富翁</h1><p>三組一起挑戰理財任務，學會規劃、合作與聰明選擇！</p><div class="mp-actions"><button class="primary" onclick="startHostRoom()">📡 建立多人房間</button><button class="secondary" onclick="startGame()">🖥️ 單機開始</button></div><div class="mp-box" id="roomBox" style="display:none"><div><span class="online-dot"></span>多人房間已開啟</div><div class="room-code" id="roomCode">建立中…</div><div id="qrcode" style="display:grid;place-items:center;margin:12px"></div><div class="join-link" id="joinLink"></div><div class="small">玩家掃描 QR Code，輸入隊名並選擇動物。三隊加入後，再按下方按鈕。</div><button class="primary" style="margin-top:12px" onclick="startGame()">三隊完成，開始遊戲</button></div></div></div>
+<div class="screen" id="homeScreen"><div class="home-box"><div style="font-size:13px;font-weight:800;color:#64748b;margin-bottom:8px">V5.1 棋盤事件同步版</div><div style="font-size:76px">🎲🐾🏦</div><h1>人生理財大富翁</h1><p>三組一起挑戰理財任務，學會規劃、合作與聰明選擇！</p><div class="mp-actions"><button class="primary" onclick="startHostRoom()">📡 建立多人房間</button><button class="secondary" onclick="startGame()">🖥️ 單機開始</button></div><div class="mp-box" id="roomBox" style="display:none"><div><span class="online-dot"></span>多人房間已開啟</div><div class="room-code" id="roomCode">建立中…</div><div id="qrcode" style="display:grid;place-items:center;margin:12px"></div><div class="join-link" id="joinLink"></div><div class="small">玩家掃描 QR Code，輸入隊名並選擇動物。三隊加入後，再按下方按鈕。</div><button class="primary" style="margin-top:12px" onclick="startGame()">三隊完成，開始遊戲</button></div></div></div>
 <div class="player-screen" id="playerScreen"><div class="player-panel"><div id="joinPanel"><div style="font-size:60px">📱🐾</div><h1>加入理財大富翁</h1><input id="joinName" maxlength="12" placeholder="輸入隊伍名稱" style="font-size:19px;padding:14px"><div class="animal-grid" id="animalGrid"></div><button class="primary player-roll" onclick="joinHostRoom()">加入房間</button><div class="small" id="joinStatus">請先輸入隊名並選動物</div></div><div id="playPanel" style="display:none"><div class="player-animal" id="myAnimal">🦁</div><h1 id="myTeam">隊伍</h1><div class="player-status" id="myPosition">位置：START</div><div class="player-status" id="myTurn">等待主持人開始</div><div class="dice" id="playerDice">⚀</div><button class="primary player-roll" id="playerRollBtn" onclick="requestRoll()" disabled>🎲 擲骰</button><div class="small">手機只同步隊名、動物、位置與擲骰狀態，不會顯示資產與排名。</div></div></div></div>
 <header>
-  <div><h1>🎲 人生理財大富翁 V4.0｜動物多人版</h1><div class="sub">卡牌效果固定化、主持人判定、投骰子與資產結算</div></div>
+  <div><h1>🎲 人生理財大富翁 V5.1｜動物多人版</h1><div class="sub">卡牌效果固定化、主持人判定、投骰子與資產結算</div></div>
   <div><button id="soundBtn" class="secondary" onclick="toggleSound()">🔊 音效開</button> <button class="secondary" onclick="toggleProjection()">📽️ 投影模式</button> <button class="secondary" onclick="toggleFullscreen()">⛶ 全螢幕</button></div>
 </header>
 
@@ -273,30 +273,30 @@ function positionLabel(pos){
 }
 
 const tiles = {
-1:{title:"工作薪水",effect:{cash:2000}},
-2:{title:"日常消費",effect:{cash:-800}},
-3:{title:"突發事件卡",deck:"event"},
-4:{title:"手搖飲誘惑",effect:{cash:-600}},
-5:{title:"存款",effect:{cash:-1500,saving:1500}},
-6:{title:"機會卡",deck:"chance"},
-7:{title:"投資獲利",effect:{cash:2000}},
-8:{title:"做公益",effect:{cash:-1000}},
-9:{title:"合作挑戰",deck:"cooperation"},
-10:{title:"理財知識",deck:"knowledge"},
-11:{title:"情境卡",deck:"scenario"},
-12:{title:"生日快樂",effect:{cash:-1000}},
-13:{title:"學習回饋",deck:"feedback"},
-14:{title:"理財挑戰",deck:"knowledge"},
-15:{title:"購物慾望",effect:{cash:-1200}},
-16:{title:"獎學金",effect:{cash:2000}},
-17:{title:"行動支付",effect:{cash:500}},
-18:{title:"合作挑戰",deck:"cooperation"},
-19:{title:"夢想基金",effect:{cash:-1500,saving:1500}},
-20:{title:"情境卡",deck:"scenario"},
+1:{title:"理財知識",deck:"knowledge"},
+2:{title:"獎學金",effect:{cash:2000}},
+3:{title:"突發事件",deck:"event"},
+4:{title:"機會",deck:"chance"},
+5:{title:"生活支出",effect:{cash:-800}},
+6:{title:"生活情境",deck:"scenario"},
+7:{title:"合作挑戰",deck:"cooperation"},
+8:{title:"美食誘惑",effect:{cash:-600}},
+9:{title:"學習回饋",deck:"feedback"},
+10:{title:"生活費",effect:{cash:2000}},
+11:{title:"理財知識",deck:"knowledge"},
+12:{title:"突發事件",deck:"event"},
+13:{title:"手機費",effect:{cash:-500}},
+14:{title:"機會",deck:"chance"},
+15:{title:"生活情境",deck:"scenario"},
+16:{title:"做公益",effect:{cash:-1000}},
+17:{title:"合作挑戰",deck:"cooperation"},
+18:{title:"學習回饋",deck:"feedback"},
+19:{title:"理財知識",deck:"knowledge"},
+20:{title:"生日快樂",effect:{cash:-1000}},
 21:{title:"機會卡",deck:"chance"},
-22:{title:"副業收入",effect:{cash:1500}},
-23:{title:"合作挑戰",deck:"cooperation"},
-24:{title:"幸運日",effect:{cash:1000}},
+22:{title:"機會",deck:"chance"},
+23:{title:"購物慾望",effect:{cash:-1200}},
+24:{title:"生活情境",deck:"scenario"},
 25:{title:"學習回饋",deck:"feedback"}
 };
 
